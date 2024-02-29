@@ -9,7 +9,7 @@
   
 ### Objectives
 
-* Achieve knowledge and practise developing SQL queries, DDL and DML concepts, and learning it's principles.
+* Achieve knowledge and practise developing SQL queries, DDL, DML and ACID concepts and practise, and learning it's principles.
 * Achieve advanced knowledge and use of SQL.
 * Store procedure vs functions.
 * Archieve knoledge of databases, entities, type of data and normalization.
