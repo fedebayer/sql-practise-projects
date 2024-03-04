@@ -45,11 +45,20 @@ A continuación se detalla la información que se desea persistir en el sistema 
 USE [FB_Practica_SQL_1_1]
 GO
 
-/****** Object:  Table [dbo].[CondicionIva] ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TipoDocumento](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [nvarchar](20) NOT NULL,
+ CONSTRAINT [PK_TipoDocumento] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
 CREATE TABLE [dbo].[CondicionIva](
@@ -61,4 +70,3 @@ CREATE TABLE [dbo].[CondicionIva](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
