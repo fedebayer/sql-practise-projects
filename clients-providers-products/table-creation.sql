@@ -30,14 +30,10 @@ A continuación se detalla la información que se desea persistir en el sistema 
     - Nombre Contacto (obligatorio, 50 caracteres)
     - Estado (obligatorio, entero) (puede estar activo o deshabilitado)
 - Información de los Productos que ofrece la empresa (Tabla Productos)
-    
     Cada producto está compuesto por un código de 5 caracteres alfanuméricos, una descripción (50 caracteres) y un precio de compra 
     (decimal, máximo dos dígitos decimales) y un precio sugerido de venta (siendo este opcional, decimal, máximo dos dígitos decimales).
-    
-    Los productos dispondrán de un Estado (obligatorio, entero) ya que pueden estar disponibles o no para vender.
-    
+    Los productos dispondrán de un Estado (obligatorio, entero) ya que pueden estar disponibles o no para vender.    
 - Información de los Depósitos donde existirá stock de Productos (Tabla Depósitos)
-    
     Cada deposito está compuesto por un identificador incrementable, un nombre (100 caracteres), un Domicilio (calle -100 caracteres-, 
     numero –entero-, código postal -10 caracteres-), opcionales, un teléfono (opcional, 10 caracteres) y un mail (opcional, 255 caracteres).
 */
