@@ -11,7 +11,7 @@
 
 * Achieve knowledge and practise developing SQL queries, DDL, DML and ACID concepts and practise, and learning it's principles.
 * Achieve advanced knowledge and use of SQL.
-* Store procedure vs functions.
+* Store procedure vs functions, ORM vs Store procedures.
 * Archieve knoledge of databases, entities, type of data and normalization.
 * Achieve knowledge and practise of triggers and views.
 * Know and use Software Tools, Microsoft SQL Server, etc.
