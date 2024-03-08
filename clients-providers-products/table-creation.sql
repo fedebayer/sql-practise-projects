@@ -79,3 +79,24 @@ CREATE TABLE [dbo].[Domicilio](
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_CondicionIva] FOREIGN KEY([CondicionIva])
+REFERENCES [dbo].[CondicionIva] ([Codigo])
+GO
+
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_CondicionIva]
+GO
+
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_Domicilio] FOREIGN KEY([IdDomicilio])
+REFERENCES [dbo].[Domicilio] ([Id])
+GO
+
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_Domicilio]
+GO
+
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_TipoDocumento] FOREIGN KEY([TipoDocumento])
+REFERENCES [dbo].[TipoDocumento] ([Id])
+GO
+
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_TipoDocumento]
+GO
+
