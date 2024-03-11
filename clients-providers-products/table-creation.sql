@@ -100,3 +100,36 @@ GO
 ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_TipoDocumento]
 GO
 
+CREATE TABLE [dbo].[Proveedor](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[NombreDeFantasia] [varchar](100) NULL,
+	[RazonSocial] [varchar](100) NOT NULL,
+	[CUIT] [numeric](18, 0) NOT NULL,
+	[IdDomicilio] [int] NULL,
+	[Telefono] [varchar](20) NULL,
+	[Email] [varchar](255) NULL,
+	[CondicionIva] [varchar](5) NOT NULL,
+	[NombreContacto] [varchar](50) NOT NULL,
+	[Estado] [int] NOT NULL,
+	[DatosContacto] [varchar](200) NULL,
+ CONSTRAINT [PK_Proveedor] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Proveedor]  WITH CHECK ADD  CONSTRAINT [FK_Proveedor_CondicionIva] FOREIGN KEY([CondicionIva])
+REFERENCES [dbo].[CondicionIva] ([Codigo])
+GO
+
+ALTER TABLE [dbo].[Proveedor] CHECK CONSTRAINT [FK_Proveedor_CondicionIva]
+GO
+
+ALTER TABLE [dbo].[Proveedor]  WITH CHECK ADD  CONSTRAINT [FK_Proveedor_Domicilio] FOREIGN KEY([IdDomicilio])
+REFERENCES [dbo].[Domicilio] ([Id])
+GO
+
+ALTER TABLE [dbo].[Proveedor] CHECK CONSTRAINT [FK_Proveedor_Domicilio]
+GO
+
