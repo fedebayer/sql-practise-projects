@@ -57,6 +57,7 @@ CREATE TABLE [dbo].[TipoDocumento](
 ) ON [PRIMARY]
 GO
 
+
 CREATE TABLE [dbo].[CondicionIva](
 	[Codigo] [varchar](5) NOT NULL,
 	[Descripcion] [varchar](50) NULL,
@@ -66,6 +67,7 @@ CREATE TABLE [dbo].[CondicionIva](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 CREATE TABLE [dbo].[Domicilio](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -100,6 +102,7 @@ GO
 ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_TipoDocumento]
 GO
 
+
 CREATE TABLE [dbo].[Proveedor](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[NombreDeFantasia] [varchar](100) NULL,
@@ -131,5 +134,18 @@ REFERENCES [dbo].[Domicilio] ([Id])
 GO
 
 ALTER TABLE [dbo].[Proveedor] CHECK CONSTRAINT [FK_Proveedor_Domicilio]
+GO
+
+CREATE TABLE [dbo].[Producto](
+	[Codigo] [varchar](5) NOT NULL,
+	[Descripcion] [varchar](50) NOT NULL,
+	[PrecioCompra] [decimal](10, 2) NOT NULL,
+	[PrecioVenta] [decimal](10, 2) NULL,
+	[Estado] [int] NOT NULL,
+ CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED 
+(
+	[Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
