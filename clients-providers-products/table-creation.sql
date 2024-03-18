@@ -36,6 +36,8 @@ A continuación se detalla la información que se desea persistir en el sistema 
 - Información de los Depósitos donde existirá stock de Productos (Tabla Depósitos)
     Cada deposito está compuesto por un identificador incrementable, un nombre (100 caracteres), un Domicilio (calle -100 caracteres-, 
     numero –entero-, código postal -10 caracteres-), opcionales, un teléfono (opcional, 10 caracteres) y un mail (opcional, 255 caracteres).
+
+PUNTO 1: Realizar los scripts de creación de las tablas identificando claves primarias y foráneas.
 */
 
 USE [FB_Practica_SQL_1_1]
