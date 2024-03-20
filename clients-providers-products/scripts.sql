@@ -28,3 +28,15 @@ INSERT INTO Producto (Codigo, Descripcion, PrecioCompra, PrecioVenta, Estado) VA
 ('SSSJJ', 'Mini linterna LED', 200.00, 240.00, 1);
 
 SELECT * FROM Producto;
+
+/*PUNTO 4*/
+INSERT INTO Domicilio (Calle, Numero, CodigoPostal) VALUES ('9 de Julio', 250, 'B7000'), ('9 de Julio', 570, 'B700'),
+('Avenida Corrientes', 100, 'C1000'), ('Avenida Santa Fe', 200, 'C1425'), ('Avenida Córdoba', 300, 'C1050'),
+('Calle Florida', 400, 'C1000'), ('Calle Reconquista', 500, 'C1000'), ('Calle Lavalle', 600, 'C1000'), ('Calle Maipú', 700, 'C1000'),
+('Calle Sarmiento', 800, 'C1000'), ('Calle Callao', 900, 'C1000'), ('Calle Corrientes', 1000, 'C1000'), ('Avenida Santa Fe', 2000, 'C1425'),
+('Avenida Córdoba', 3000, 'C1050'), ('Calle Florida', 4000, 'C1000'), ('Calle Reconquista', 5000, 'C1000'), ('Calle Lavalle', 6000, 'C1000'),
+('Calle Maipú', 7000, 'C1000'), ('Calle Sarmiento', 8000, 'C1000'), ('Calle Callao', 9000, 'C1000'), ('Calle 57', 123, 'C1000'), 
+('Calle 9 de Julio', 1000, 'C1000'), ('Calle Corrientes', 2000, 'C1000'), ('Calle Maipú', 3000, 'C1000'), ('Calle Santa Fe', 4000, 'C1000'),
+('Calle de la Reconquista', 1111, 'C1000');
+
+SELECT * FROM Domicilio;
