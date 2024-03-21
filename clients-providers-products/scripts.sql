@@ -40,3 +40,23 @@ INSERT INTO Domicilio (Calle, Numero, CodigoPostal) VALUES ('9 de Julio', 250, '
 ('Calle de la Reconquista', 1111, 'C1000');
 
 SELECT * FROM Domicilio;
+
+/*PUNTO 5*/
+INSERT INTO Proveedor (NombreDeFantasia, RazonSocial, CUIT, IdDomicilio, Telefono, Email, CondicionIva, NombreContacto, Estado) VALUES
+('Dynamic Solutions', 'DYNAMIC SOLUTIONS S.R.L', 29526037666, 1, '45912993', 'consultas@dynamicsolutions.com', '002BB', 'Gabriel Collado', 1),
+('Compumundo', 'COMPUMUNDO S.A.', 30711234567, 2, '45912994', 'atencionclientes@computmundo.com.ar', '001AA', 'Juan Pérez', 1),
+('Mercado Libre', 'MERCADO LIBRE S.A.', 30711234568, 3, '45912995', 'soporte@mercadolibre.com.ar', '003CC', 'Ana López', 1),
+('Amazon', 'AMAZON.COM INC.', 30711234569, 4, '45912996', 'soporte@amazon.com', '004DD', 'Pedro García', 1),
+('Aliexpress', 'ALIEXPRESS.COM', 30711234570, 5, '45912997', 'soporte@aliexpress.com', '005EE', 'María Fernández', 1),
+('Ebay', 'EBAY INC.', 30711234571, 6, '45912998', 'soporte@ebay.com', '006FF', 'Carlos Rodríguez', 1),
+('Carrefour', 'CARREFOUR ARGENTINA S.A.', 30711234572, 7, '45912999', 'atencionclientes@carrefour.com.ar', '001AA', 'Daniela Gómez', 1),
+('Walmart', 'WALMART ARGENTINA S.A.', 30711234573, 8, '45913000', 'atencionclientes@walmart.com.ar', '002BB', 'Sebastián Hernández', 1),
+('Dia', 'DIA S.A.', 30711234574, 9, '45913001', 'atencionclientes@dia.com.ar', '003CC', 'Laura Martínez', 1),
+('Cencosud', 'Cencosud S.A.', 30711234575, 10, '45913002', 'atencionclientes@cencosud.com.ar', '004DD', 'Federico López', 1),
+('Jumbo', 'JUMBO S.A.', 30711234576, 11, '45913003', 'atencionclientes@jumbo.com.ar', '005EE', 'Carla Pérez', 1),
+('Disco', 'Disco S.A.', 30711234577, 12, '45913004', 'atencionclientes@disco.com.ar', '006FF', 'Martín García', 1),
+('Coto', 'Coto S.A.', 30711234578, 13, '45913005', 'atencionclientes@coto.com.ar', '001AA', 'Mariano Rodríguez', 1),
+('Kiosco La esquina', 'Kiosco La esquina S.R.L.', 30711234579, 14, '45913006', 'atencionclientes@kioscolaesquina.com.ar', '002BB', 'Lucía Gómez', 1),
+('Fábrica de empanadas Don Juan', 'Fábrica de empanadas Don Juan S.A.', 30711234580, 15, '45913007','atencionclientes@empanadasdonjuan.com.ar', '003CC', 'Pedro Martínez', 1);
+
+SELECT * FROM Proveedor;
