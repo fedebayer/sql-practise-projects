@@ -60,3 +60,9 @@ INSERT INTO Proveedor (NombreDeFantasia, RazonSocial, CUIT, IdDomicilio, Telefon
 ('Fábrica de empanadas Don Juan', 'Fábrica de empanadas Don Juan S.A.', 30711234580, 15, '45913007','atencionclientes@empanadasdonjuan.com.ar', '003CC', 'Pedro Martínez', 1);
 
 SELECT * FROM Proveedor;
+
+/*PUNTO 6*/
+ALTER TABLE Proveedor
+ADD DatosContacto VARCHAR(200);
+
+SELECT * FROM Proveedor;
