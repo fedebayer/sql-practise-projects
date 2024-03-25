@@ -66,3 +66,10 @@ ALTER TABLE Proveedor
 ADD DatosContacto VARCHAR(200);
 
 SELECT * FROM Proveedor;
+
+/*PUNTO 7*/
+UPDATE Proveedor
+SET DatosContacto = Email
+WHERE Email IS NOT NULL;
+
+SELECT * FROM Proveedor;
