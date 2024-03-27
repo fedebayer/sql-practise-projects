@@ -4,3 +4,14 @@ PUNTOS
 3. Listar los productos cuyo precio de venta sea mayor a 100 y menor a 250 (ver BEETWEN)
 4. Listar los 5 productos más caros (mostrar código, descripción, precio de compra)
 5. Listar los 5 productos más baratos (mostrar código, descripción, precio de compra)
+
+/*Punto 1*/
+SELECT 
+    TD.Descripcion AS "TipoDocumento",
+    C.NumeroDocumento,
+    CI.Descripcion AS "CondicionIva",
+    C.Apellido,
+    C.Nombre
+FROM Cliente C
+INNER JOIN CondicionIva CI ON C.CondicionIva = CI.Codigo
+INNER JOIN TipoDocumento TD ON C.TipoDocumento = TD.Id;
