@@ -15,3 +15,13 @@ SELECT
 FROM Cliente C
 INNER JOIN CondicionIva CI ON C.CondicionIva = CI.Codigo
 INNER JOIN TipoDocumento TD ON C.TipoDocumento = TD.Id;
+
+/*Punto 2*/
+SELECT
+    P.CUIT,
+    P.RazonSocial,
+    CI.Descripcion AS "CondicionIva"
+FROM Proveedor P
+INNER JOIN CondicionIva CI ON P.CondicionIva = CI.Codigo
+WHERE CI.Descripcion = 'Monotributo'
+ORDER BY P.CUIT;
