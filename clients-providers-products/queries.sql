@@ -25,3 +25,11 @@ FROM Proveedor P
 INNER JOIN CondicionIva CI ON P.CondicionIva = CI.Codigo
 WHERE CI.Descripcion = 'Monotributo'
 ORDER BY P.CUIT;
+
+/*Punto 3*/
+SELECT
+    Codigo,
+    Descripcion,
+    PrecioVenta
+FROM Producto
+WHERE PrecioVenta BETWEEN 100 AND 250;
