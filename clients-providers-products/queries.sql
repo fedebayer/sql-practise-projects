@@ -33,3 +33,11 @@ SELECT
     PrecioVenta
 FROM Producto
 WHERE PrecioVenta BETWEEN 100 AND 250;
+
+/*Punto 4*/
+SELECT TOP 5
+    Codigo,
+    Descripcion,
+    PrecioCompra
+FROM Producto
+ORDER BY PrecioCompra DESC;
