@@ -41,3 +41,11 @@ SELECT TOP 5
     PrecioCompra
 FROM Producto
 ORDER BY PrecioCompra DESC;
+
+/*Punto 5*/
+SELECT TOP 5
+    Codigo,
+    Descripcion,
+    PrecioCompra
+FROM Producto
+ORDER BY PrecioCompra ASC;
