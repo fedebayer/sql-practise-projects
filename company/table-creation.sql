@@ -36,3 +36,38 @@ CREATE TABLE [dbo].[Familia](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE [dbo].[Producto](
+	[prod_codigo] [char](8) NOT NULL,
+	[prod_detalle] [char](50) NULL,
+	[prod_precio] [decimal](12, 2) NULL,
+	[prod_familia] [char](3) NULL,
+	[prod_rubro] [char](4) NULL,
+	[prod_envase] [numeric](6, 0) NULL,
+ CONSTRAINT [XPKProducto] PRIMARY KEY NONCLUSTERED 
+(
+	[prod_codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Producto]  WITH CHECK ADD  CONSTRAINT [R_1] FOREIGN KEY([prod_familia])
+REFERENCES [dbo].[Familia] ([fami_id])
+GO
+
+ALTER TABLE [dbo].[Producto] CHECK CONSTRAINT [R_1]
+GO
+
+ALTER TABLE [dbo].[Producto]  WITH CHECK ADD  CONSTRAINT [R_2] FOREIGN KEY([prod_rubro])
+REFERENCES [dbo].[Rubro] ([rubr_id])
+GO
+
+ALTER TABLE [dbo].[Producto] CHECK CONSTRAINT [R_2]
+GO
+
+ALTER TABLE [dbo].[Producto]  WITH CHECK ADD  CONSTRAINT [R_5] FOREIGN KEY([prod_envase])
+REFERENCES [dbo].[Envases] ([enva_codigo])
+GO
+
+ALTER TABLE [dbo].[Producto] CHECK CONSTRAINT [R_5]
+GO
