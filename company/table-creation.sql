@@ -71,3 +71,29 @@ GO
 
 ALTER TABLE [dbo].[Producto] CHECK CONSTRAINT [R_5]
 GO
+
+CREATE TABLE [dbo].[Composicion](
+	[comp_cantidad] [decimal](12, 2) NULL,
+	[comp_producto] [char](8) NOT NULL,
+	[comp_componente] [char](8) NOT NULL,
+ CONSTRAINT [XPKComposicion] PRIMARY KEY NONCLUSTERED 
+(
+	[comp_producto] ASC,
+	[comp_componente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Composicion]  WITH CHECK ADD  CONSTRAINT [R_3] FOREIGN KEY([comp_producto])
+REFERENCES [dbo].[Producto] ([prod_codigo])
+GO
+
+ALTER TABLE [dbo].[Composicion] CHECK CONSTRAINT [R_3]
+GO
+
+ALTER TABLE [dbo].[Composicion]  WITH CHECK ADD  CONSTRAINT [R_4] FOREIGN KEY([comp_componente])
+REFERENCES [dbo].[Producto] ([prod_codigo])
+GO
+
+ALTER TABLE [dbo].[Composicion] CHECK CONSTRAINT [R_4]
+GO
