@@ -125,3 +125,42 @@ GO
 
 ALTER TABLE [dbo].[Departamento] CHECK CONSTRAINT [R_16]
 GO
+
+CREATE TABLE [dbo].[Empleado](
+	[empl_codigo] [numeric](6, 0) NOT NULL,
+	[empl_nombre] [char](50) NULL,
+	[empl_apellido] [char](50) NULL,
+	[empl_nacimiento] [smalldatetime] NULL,
+	[empl_ingreso] [smalldatetime] NULL,
+	[empl_tareas] [char](100) NULL,
+	[empl_salario] [decimal](12, 2) NULL,
+	[empl_comision] [decimal](12, 2) NULL,
+	[empl_jefe] [numeric](6, 0) NULL,
+	[empl_departamento] [numeric](6, 0) NULL,
+ CONSTRAINT [XPKEmpleado] PRIMARY KEY NONCLUSTERED 
+(
+	[empl_codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD  CONSTRAINT [FK_empleado_jefe] FOREIGN KEY([empl_jefe])
+REFERENCES [dbo].[Empleado] ([empl_codigo])
+GO
+
+ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [FK_empleado_jefe]
+GO
+
+ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD  CONSTRAINT [R_7] FOREIGN KEY([empl_codigo])
+REFERENCES [dbo].[Empleado] ([empl_codigo])
+GO
+
+ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [R_7]
+GO
+
+ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD  CONSTRAINT [R_8] FOREIGN KEY([empl_departamento])
+REFERENCES [dbo].[Departamento] ([depa_codigo])
+GO
+
+ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [R_8]
+GO
