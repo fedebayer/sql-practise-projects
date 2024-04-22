@@ -164,3 +164,31 @@ GO
 
 ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [R_8]
 GO
+
+CREATE TABLE [dbo].[DEPOSITO](
+	[depo_codigo] [char](2) NOT NULL,
+	[depo_detalle] [char](50) NULL,
+	[depo_domicilio] [char](50) NULL,
+	[depo_telefono] [char](50) NULL,
+	[depo_encargado] [numeric](6, 0) NULL,
+	[depo_zona] [char](3) NULL,
+ CONSTRAINT [XPKDEPOSITO] PRIMARY KEY NONCLUSTERED 
+(
+	[depo_codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[DEPOSITO]  WITH CHECK ADD  CONSTRAINT [R_10] FOREIGN KEY([depo_zona])
+REFERENCES [dbo].[Zona] ([zona_codigo])
+GO
+
+ALTER TABLE [dbo].[DEPOSITO] CHECK CONSTRAINT [R_10]
+GO
+
+ALTER TABLE [dbo].[DEPOSITO]  WITH CHECK ADD  CONSTRAINT [R_9] FOREIGN KEY([depo_encargado])
+REFERENCES [dbo].[Empleado] ([empl_codigo])
+GO
+
+ALTER TABLE [dbo].[DEPOSITO] CHECK CONSTRAINT [R_9]
+GO
