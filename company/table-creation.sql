@@ -192,3 +192,33 @@ GO
 
 ALTER TABLE [dbo].[DEPOSITO] CHECK CONSTRAINT [R_9]
 GO
+
+CREATE TABLE [dbo].[STOCK](
+	[stoc_cantidad] [decimal](12, 2) NULL,
+	[stoc_punto_reposicion] [decimal](12, 2) NULL,
+	[stoc_stock_maximo] [decimal](12, 2) NULL,
+	[stoc_detalle] [char](100) NULL,
+	[stoc_proxima_reposicion] [smalldatetime] NULL,
+	[stoc_producto] [char](8) NOT NULL,
+	[stoc_deposito] [char](2) NOT NULL,
+ CONSTRAINT [XPKSTOCK] PRIMARY KEY NONCLUSTERED 
+(
+	[stoc_producto] ASC,
+	[stoc_deposito] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[STOCK]  WITH CHECK ADD  CONSTRAINT [R_11] FOREIGN KEY([stoc_producto])
+REFERENCES [dbo].[Producto] ([prod_codigo])
+GO
+
+ALTER TABLE [dbo].[STOCK] CHECK CONSTRAINT [R_11]
+GO
+
+ALTER TABLE [dbo].[STOCK]  WITH CHECK ADD  CONSTRAINT [R_12] FOREIGN KEY([stoc_deposito])
+REFERENCES [dbo].[DEPOSITO] ([depo_codigo])
+GO
+
+ALTER TABLE [dbo].[STOCK] CHECK CONSTRAINT [R_12]
+GO
