@@ -222,3 +222,24 @@ GO
 
 ALTER TABLE [dbo].[STOCK] CHECK CONSTRAINT [R_12]
 GO
+
+CREATE TABLE [dbo].[Cliente](
+	[clie_codigo] [char](6) NOT NULL,
+	[clie_razon_social] [char](100) NULL,
+	[clie_telefono] [char](100) NULL,
+	[clie_domicilio] [char](100) NULL,
+	[clie_limite_credito] [decimal](12, 2) NULL,
+	[clie_vendedor] [numeric](6, 0) NULL,
+ CONSTRAINT [XPKCliente] PRIMARY KEY NONCLUSTERED 
+(
+	[clie_codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_clie_vendedor] FOREIGN KEY([clie_vendedor])
+REFERENCES [dbo].[Empleado] ([empl_codigo])
+GO
+
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_clie_vendedor]
+GO
