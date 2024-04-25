@@ -243,3 +243,35 @@ GO
 
 ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_clie_vendedor]
 GO
+
+CREATE TABLE [dbo].[Factura](
+	[fact_tipo] [char](1) NOT NULL,
+	[fact_sucursal] [char](4) NOT NULL,
+	[fact_numero] [char](8) NOT NULL,
+	[fact_fecha] [smalldatetime] NULL,
+	[fact_vendedor] [numeric](6, 0) NULL,
+	[fact_total] [decimal](12, 2) NULL,
+	[fact_total_impuestos] [decimal](12, 2) NULL,
+	[fact_cliente] [char](6) NULL,
+ CONSTRAINT [XPKFactura] PRIMARY KEY NONCLUSTERED 
+(
+	[fact_tipo] ASC,
+	[fact_sucursal] ASC,
+	[fact_numero] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_fact_vendedor] FOREIGN KEY([fact_vendedor])
+REFERENCES [dbo].[Empleado] ([empl_codigo])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_fact_vendedor]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [R_15] FOREIGN KEY([fact_cliente])
+REFERENCES [dbo].[Cliente] ([clie_codigo])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [R_15]
+GO
