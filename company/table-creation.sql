@@ -275,3 +275,34 @@ GO
 
 ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [R_15]
 GO
+
+CREATE TABLE [dbo].[Item_Factura](
+	[item_tipo] [char](1) NOT NULL,
+	[item_sucursal] [char](4) NOT NULL,
+	[item_numero] [char](8) NOT NULL,
+	[item_producto] [char](8) NOT NULL,
+	[item_cantidad] [decimal](12, 2) NULL,
+	[item_precio] [decimal](12, 2) NULL,
+ CONSTRAINT [XPKItem_Factura] PRIMARY KEY NONCLUSTERED 
+(
+	[item_tipo] ASC,
+	[item_sucursal] ASC,
+	[item_numero] ASC,
+	[item_producto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Item_Factura]  WITH CHECK ADD  CONSTRAINT [R_13] FOREIGN KEY([item_tipo], [item_sucursal], [item_numero])
+REFERENCES [dbo].[Factura] ([fact_tipo], [fact_sucursal], [fact_numero])
+GO
+
+ALTER TABLE [dbo].[Item_Factura] CHECK CONSTRAINT [R_13]
+GO
+
+ALTER TABLE [dbo].[Item_Factura]  WITH CHECK ADD  CONSTRAINT [R_14] FOREIGN KEY([item_producto])
+REFERENCES [dbo].[Producto] ([prod_codigo])
+GO
+
+ALTER TABLE [dbo].[Item_Factura] CHECK CONSTRAINT [R_14]
+GO
