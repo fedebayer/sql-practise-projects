@@ -306,3 +306,7 @@ GO
 
 ALTER TABLE [dbo].[Item_Factura] CHECK CONSTRAINT [R_14]
 GO
+
+/*INSERTS*/
+
+INSERT INTO dbo.Envases VALUES (1, 'BOLSAS'), (2, 'LATAS'), (3, 'CAJAS');
