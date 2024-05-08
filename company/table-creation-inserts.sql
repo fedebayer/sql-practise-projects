@@ -321,3 +321,5 @@ INSERT INTO dbo.Producto VALUES ('00000011', 'ADAMS 100 X 2 MENTOL', 24483.75, '
 INSERT INTO dbo.Composicion VALUES (1.00, '00000011', '00000022');
 
 INSERT INTO dbo.Zona VALUES ('001', 'ZONA FEDERACION'), ('002', 'ZONA LIBRES'), ('003', 'ZONA ALTA');
+
+INSERT INTO dbo.Departamento VALUES (1, 'Administracion', '001'), (2, 'Ventas', '002'), (3, 'Compras', '003');
