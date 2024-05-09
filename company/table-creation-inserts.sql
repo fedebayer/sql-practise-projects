@@ -323,3 +323,6 @@ INSERT INTO dbo.Composicion VALUES (1.00, '00000011', '00000022');
 INSERT INTO dbo.Zona VALUES ('001', 'ZONA FEDERACION'), ('002', 'ZONA LIBRES'), ('003', 'ZONA ALTA');
 
 INSERT INTO dbo.Departamento VALUES (1, 'Administracion', '001'), (2, 'Ventas', '002'), (3, 'Compras', '003');
+
+INSERT INTO dbo.Empleado VALUES (1, 'Juan', 'Perez', '1978-01-01 00:00:00', '2000-01-03 00:00:00', 'Gerente', 25000.00, 0.00, NULL, 1),
+(2, 'Pedro', 'Gonzalez', '1978-01-05 00:00:00', '2000-01-08 00:00:00', 'Jefe de compras', 15000.00, 0.00, 1, 1);
