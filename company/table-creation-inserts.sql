@@ -326,3 +326,6 @@ INSERT INTO dbo.Departamento VALUES (1, 'Administracion', '001'), (2, 'Ventas', 
 
 INSERT INTO dbo.Empleado VALUES (1, 'Juan', 'Perez', '1978-01-01 00:00:00', '2000-01-03 00:00:00', 'Gerente', 25000.00, 0.00, NULL, 1),
 (2, 'Pedro', 'Gonzalez', '1978-01-05 00:00:00', '2000-01-08 00:00:00', 'Jefe de compras', 15000.00, 0.00, 1, 1);
+
+INSERT INTO dbo.DEPOSITO VALUES ('01', 'BUJAN ROQUE', 'AV. SAN MARTIN && O HIGGINS', NULL, 1, '001'),
+('02', 'VARGAS TINO', 'AV. SAN MARTIN', NULL, 2, '002');
