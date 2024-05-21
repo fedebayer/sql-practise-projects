@@ -18,3 +18,17 @@ SELECT clie_codigo, clie_razon_social
 FROM CAP_Practica_2.dbo.Cliente
 WHERE clie_limite_credito >= 1000
 ORDER BY clie_codigo;
+
+/*PUNTO 2
+Mostrar el código, detalle de todos los artículos vendidos en el año 2012 ordenados por cantidad vendida.*/
+
+
+SELECT P.prod_codigo, P.prod_detalle, SUM(ITF.item_cantidad) AS cantidad_vendida
+FROM CAP_Practica_2.dbo.Producto AS P
+INNER JOIN CAP_Practica_2.dbo.Item_Factura AS ITF ON P.prod_codigo = ITF.item_producto
+INNER JOIN CAP_Practica_2.dbo.Factura AS F ON ITF.item_tipo = F.fact_tipo
+                        AND ITF.item_sucursal = F.fact_sucursal
+                        AND ITF.item_numero = F.fact_numero
+WHERE YEAR(F.fact_fecha) = 2012
+GROUP BY P.prod_codigo, P.prod_detalle, F.fact_fecha
+ORDER BY cantidad_vendida DESC;
