@@ -32,3 +32,13 @@ INNER JOIN CAP_Practica_2.dbo.Factura AS F ON ITF.item_tipo = F.fact_tipo
 WHERE YEAR(F.fact_fecha) = 2012
 GROUP BY P.prod_codigo, P.prod_detalle, F.fact_fecha
 ORDER BY cantidad_vendida DESC;
+
+/*PUNTO 3
+Realizar una consulta que muestre código de producto, nombre de producto y el stock total, 
+sin importar en que deposito se encuentre, los datos deben ser ordenados por nombre del artículo de menor a mayor.*/
+
+SELECT P.prod_codigo, P.prod_detalle AS nombre_producto, SUM(S.stoc_cantidad) AS stock_total
+FROM CAP_Practica_2.dbo.Producto AS P
+LEFT JOIN CAP_Practica_2.dbo.STOCK AS S ON P.prod_codigo = S.stoc_producto
+GROUP BY P.prod_codigo, P.prod_detalle
+ORDER BY nombre_producto;
