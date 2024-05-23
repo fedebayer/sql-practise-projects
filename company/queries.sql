@@ -42,3 +42,19 @@ FROM CAP_Practica_2.dbo.Producto AS P
 LEFT JOIN CAP_Practica_2.dbo.STOCK AS S ON P.prod_codigo = S.stoc_producto
 GROUP BY P.prod_codigo, P.prod_detalle
 ORDER BY nombre_producto;
+
+/*PUNTO 4
+Realizar una consulta que muestre para todos los artículos código, detalle y cantidad de artículos que lo componen. 
+Mostrar solo aquellos artículos para los cuales el stock promedio por depósito sea mayor a 100.*/
+
+SELECT P.prod_codigo, P.prod_detalle, C.comp_cantidad AS cantidad_de_componentes
+FROM CAP_Practica_2.dbo.Producto AS P
+INNER JOIN CAP_Practica_2.dbo.Composicion AS C ON P.prod_codigo = C.comp_producto
+INNER JOIN (
+    SELECT S.stoc_producto
+    FROM CAP_Practica_2.dbo.STOCK AS S
+    GROUP BY S.stoc_producto
+    HAVING AVG(S.stoc_cantidad) > 100
+) AS StockPromedio ON P.prod_codigo = StockPromedio.stoc_producto;
+
+SELECT * FROM CAP_Practica_2.dbo.STOCK WHERE stoc_cantidad > 100;
