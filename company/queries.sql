@@ -58,3 +58,39 @@ INNER JOIN (
 ) AS StockPromedio ON P.prod_codigo = StockPromedio.stoc_producto;
 
 SELECT * FROM CAP_Practica_2.dbo.STOCK WHERE stoc_cantidad > 100;
+
+/*PUNTO 5
+Realizar una consulta que muestre código de artículo, detalle y 
+cantidad de egresos de stock que se realizaron para ese artículo en 
+el año 2012 (egresan los productos que fueron vendidos). Mostrar solo 
+aquellos que hayan tenido más egresos que en el 2011.*/
+
+
+SELECT 
+    i.item_producto AS 'Código de artículo', 
+    p.prod_detalle AS 'Detalle', 
+    SUM(CASE 
+            WHEN YEAR(f.fact_fecha) = 2012 THEN i.item_cantidad 
+            ELSE 0 
+        END) AS 'Cantidad de egresos 2012',
+    SUM(CASE 
+            WHEN YEAR(f.fact_fecha) = 2011 THEN i.item_cantidad 
+            ELSE 0 
+        END) AS 'Cantidad de egresos 2011'
+FROM 
+    CAP_Practica_2.dbo.Item_Factura i
+    JOIN CAP_Practica_2.dbo.Factura f ON i.item_tipo = f.fact_tipo AND i.item_sucursal = f.fact_sucursal AND i.item_numero = f.fact_numero
+    JOIN CAP_Practica_2.dbo.Producto p ON i.item_producto = p.prod_codigo
+WHERE 
+    YEAR(f.fact_fecha) IN (2011, 2012)
+GROUP BY 
+    i.item_producto, 
+    p.prod_detalle
+HAVING 
+    SUM(CASE 
+            WHEN YEAR(f.fact_fecha) = 2012 THEN i.item_cantidad 
+            ELSE 0 
+        END) > SUM(CASE 
+                        WHEN YEAR(f.fact_fecha) = 2011 THEN i.item_cantidad 
+                        ELSE 0 
+                    END)
