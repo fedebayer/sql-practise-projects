@@ -94,3 +94,16 @@ HAVING
                         WHEN YEAR(f.fact_fecha) = 2011 THEN i.item_cantidad 
                         ELSE 0 
                     END)
+
+/*PUNTO 6
+Mostrar para todos los rubros de artículos código, detalle, 
+cantidad de artículos de ese rubro y stock total de ese rubro de artículos. 
+Solo tener en cuenta aquellos artículos que tengan un stock mayor al 
+del artículo ‘00000000’ en el depósito ‘00’.*/
+
+SELECT r.rubr_id AS 'Código de Rubro', r.rubr_detalle AS 'Detalle de Rubro', COUNT(p.prod_codigo) AS 'Cantidad de Artículos', SUM(s.stoc_cantidad) AS 'Stock Total'
+FROM CAP_Practica_2.dbo.Rubro r
+JOIN CAP_Practica_2.dbo.Producto p ON r.rubr_id = p.prod_rubro
+JOIN CAP_Practica_2.dbo.Stock s ON p.prod_codigo = s.stoc_producto
+WHERE s.stoc_cantidad > (SELECT stoc_cantidad FROM CAP_Practica_2.dbo.Stock WHERE stoc_producto = '00000000' AND stoc_deposito = '00')
+GROUP BY r.rubr_id, r.rubr_detalle
