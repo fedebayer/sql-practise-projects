@@ -61,3 +61,20 @@ BEGIN
 END
 
 SELECT dbo.Get_Deposit_State('00000030', '00') AS 'Estado Deposito';
+
+/*PUNTO 2
+Realizar una función que dado un artículo y una fecha, retorne el stock que existía a esa fecha*/
+
+CREATE FUNCTION dbo.Get_Stock_At_Date (@article char(8), @date smalldatetime)
+RETURNS decimal(12, 2)
+AS
+BEGIN
+    DECLARE @stock decimal(12, 2)
+    SELECT @stock = stoc_cantidad
+    FROM CAP_Practica_2.dbo.STOCK
+    WHERE stoc_producto = @article AND (stoc_proxima_reposicion <= @date OR stoc_proxima_reposicion IS NULL)
+    ORDER BY stoc_proxima_reposicion DESC
+    RETURN @stock
+END
+
+SELECT dbo.Get_Stock_At_Date('00000030', '1978-01-05 00:00:00') AS 'Stock en esa fecha';
