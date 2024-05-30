@@ -3,21 +3,19 @@
 3. Cree el/los objetos de base de datos necesarios para actualizar la columna de empleado empl_comision con la sumatoria del total de lo vendido por ese empleado a lo largo del último año. Se deberá retornar el código del vendedor que más vendió (en monto) a lo largo del último año.
 4. Realizar un procedimiento que complete con los datos existentes en el modelo provisto la tabla de hechos denominada `Fact_table` tiene la siguiente definición:
     
-    ```sql
-    CREATE TABLE Fact_table
-    ( anio char(4),
-    mes char(2),
-    familia char(3),
-    rubro char(4),
-    zona char(3),
-    cliente char(6),
-    producto char(8),
-    cantidad decimal(12,2),
-    monto decimal(12,2)
-    )
-    ALTER TABLE Fact_table
-    **ADD CONSTRAINT PRIMARY KEY (anio,mes,familia,rubro,zona,cliente,producto)**
-    ```
+CREATE TABLE Fact_table
+( anio char(4),
+mes char(2),
+familia char(3),
+rubro char(4),
+zona char(3),
+cliente char(6),
+producto char(8),
+cantidad decimal(12,2),
+monto decimal(12,2)
+)
+ALTER TABLE Fact_table
+ADD CONSTRAINT PRIMARY KEY (anio,mes,familia,rubro,zona,cliente,producto)
     
 5. Realizar los triggers para las distintas operaciones (Alta, Baja, Modificación) sobre la tabla “clientes”, generando un nuevo registro en la tabla de auditoría.
 6. Realizar una vista de los siguientes datos del producto:
@@ -78,3 +76,37 @@ BEGIN
 END
 
 SELECT dbo.Get_Stock_At_Date('00000030', '1978-01-05 00:00:00') AS 'Stock en esa fecha';
+
+/*PUNTO 3
+Cree el/los objetos de base de datos necesarios para actualizar la columna 
+de empleado empl_comision con la sumatoria del total de lo vendido por ese empleado 
+a lo largo del último año. Se deberá retornar el código del vendedor que más vendió 
+(en monto) a lo largo del último año.*/
+
+CREATE TABLE dbo.Ventas_Empleado (
+    empl_codigo numeric(6, 0) NOT NULL,
+    total_ventas decimal(12, 2) NULL
+);
+
+INSERT INTO dbo.Ventas_Empleado (empl_codigo, total_ventas)
+SELECT f.fact_vendedor, SUM(i.item_cantidad * i.item_precio)
+FROM dbo.Factura f
+JOIN dbo.Item_Factura i ON f.fact_tipo = i.item_tipo AND f.fact_sucursal = i.item_sucursal AND f.fact_numero = i.item_numero
+WHERE f.fact_fecha >= DATEADD(year, -1, GETDATE())
+GROUP BY f.fact_vendedor
+
+SELECT * FROM dbo.Ventas_Empleado;
+
+UPDATE dbo.Empleado
+SET empl_comision = ve.total_ventas * 0.1
+FROM dbo.Empleado e
+JOIN (
+    SELECT empl_codigo, total_ventas
+    FROM dbo.Ventas_Empleado
+) ve ON e.empl_codigo = ve.empl_codigo
+
+SELECT * FROM dbo.Empleado;
+
+SELECT TOP 1 empl_codigo
+FROM dbo.Ventas_Empleado
+ORDER BY total_ventas DESC
