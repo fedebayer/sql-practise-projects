@@ -1,4 +1,4 @@
-1. Hacer una función que dado un artículo y un deposito devuelva un string que indique el estado del depósito según el artículo. Si la cantidad almacenada es menor al límite retornar “OCUPACION DEL DEPOSITO XX %” siendo XX el % de ocupación. Si la cantidad almacenada es mayor o igual al límite retornar “DEPOSITO COMPLETO”
+/*1. Hacer una función que dado un artículo y un deposito devuelva un string que indique el estado del depósito según el artículo. Si la cantidad almacenada es menor al límite retornar “OCUPACION DEL DEPOSITO XX %” siendo XX el % de ocupación. Si la cantidad almacenada es mayor o igual al límite retornar “DEPOSITO COMPLETO”
 2. Realizar una función que dado un artículo y una fecha, retorne el stock que existía a esa fecha
 3. Cree el/los objetos de base de datos necesarios para actualizar la columna de empleado empl_comision con la sumatoria del total de lo vendido por ese empleado a lo largo del último año. Se deberá retornar el código del vendedor que más vendió (en monto) a lo largo del último año.
 4. Realizar un procedimiento que complete con los datos existentes en el modelo provisto la tabla de hechos denominada `Fact_table` tiene la siguiente definición:
@@ -24,7 +24,7 @@ ADD CONSTRAINT PRIMARY KEY (anio,mes,familia,rubro,zona,cliente,producto)
     - Precio
     - Descripción de Familia
     - Descripción de Rubro
-    - Descripción de Envase
+    - Descripción de Envase*/
  
  /*PUNTO 1
 Hacer una función que dado un artículo y un deposito devuelva un string que indique 
