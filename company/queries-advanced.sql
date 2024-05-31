@@ -110,3 +110,56 @@ SELECT * FROM dbo.Empleado;
 SELECT TOP 1 empl_codigo
 FROM dbo.Ventas_Empleado
 ORDER BY total_ventas DESC
+
+/*PUNTO 4
+Realizar un procedimiento que complete con los datos existentes 
+en el modelo provisto la tabla de hechos denominada Fact_table tiene la siguiente definición:
+
+CREATE TABLE Fact_table
+( anio char(4),
+mes char(2),
+familia char(3),
+rubro char(4),
+zona char(3),
+cliente char(6),
+producto char(8),
+cantidad decimal(12,2),
+monto decimal(12,2)
+)
+ALTER TABLE Fact_table
+ADD CONSTRAINT PRIMARY KEY (anio,mes,familia,rubro,zona,cliente,producto)*/
+
+CREATE TABLE Fact_table
+( anio char(4),
+mes char(2),
+familia char(3),
+rubro char(4),
+zona char(3),
+cliente char(6),
+producto char(8),
+cantidad decimal(12,2),
+monto decimal(12,2)
+CONSTRAINT [PKFact_table] PRIMARY KEY NONCLUSTERED 
+(
+	anio,mes,familia,rubro,zona,cliente,producto ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SELECT * FROM dbo.Fact_table;
+
+CREATE PROCEDURE insert_data_into_fact_table
+AS
+BEGIN
+  INSERT INTO Fact_table (anio, mes, familia, rubro, zona, cliente, producto, cantidad, monto)
+  SELECT YEAR(fact_fecha), MONTH(fact_fecha), prod_familia, prod_rubro, depo_zona, fact_cliente, item_producto, item_cantidad, item_precio
+  FROM dbo.Factura AS Fac
+  JOIN dbo.Item_Factura AS ItemF ON Fac.fact_tipo = ItemF.item_tipo AND Fac.fact_sucursal = ItemF.item_sucursal AND Fac.fact_numero = ItemF.item_numero
+  JOIN dbo.Producto AS Pro ON ItemF.item_producto = Pro.prod_codigo
+  JOIN dbo.STOCK AS Sto ON Pro.prod_codigo = Sto.stoc_producto
+  JOIN dbo.DEPOSITO AS Dep ON Sto.stoc_deposito = Dep.depo_codigo
+END
+
+EXEC insert_data_into_fact_table;
+
+SELECT * FROM dbo.Fact_table;
