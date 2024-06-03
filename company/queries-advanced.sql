@@ -163,3 +163,87 @@ END
 EXEC insert_data_into_fact_table;
 
 SELECT * FROM dbo.Fact_table;
+
+/*PUNTO 5
+Realizar los triggers para las distintas operaciones (Alta, Baja, Modificación) 
+sobre la tabla “clientes”, generando un nuevo registro en la tabla de auditoría.*/
+USE [FB_Practica_SQL_1_2]
+GO
+
+CREATE TABLE [dbo].[AuditoriaCliente](
+    [clie_codigo] [char](6) NOT NULL,
+    [clie_razon_social] [char](100) NULL,
+    [clie_telefono] [char](100) NULL,
+    [clie_domicilio] [char](100) NULL,
+    [clie_limite_credito] [decimal](12, 2) NULL,
+    [clie_vendedor] [numeric](6, 0) NULL,
+    [accion] [varchar](10) NOT NULL,
+    [fecha] [datetime] NOT NULL
+)
+
+
+SELECT * FROM dbo.AuditoriaCliente;
+
+USE [FB_Practica_SQL_1_2]
+GO
+
+CREATE TRIGGER [dbo].[trg_Cliente_Auditoria]
+ON [dbo].[Cliente]
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    DECLARE @accion varchar(10)
+    IF EXISTS(SELECT * FROM inserted)
+    BEGIN
+        IF EXISTS(SELECT * FROM deleted)
+            SET @accion = 'UPDATE'
+        ELSE
+            SET @accion = 'INSERT'
+    END
+    ELSE
+        SET @accion = 'DELETE'
+
+    INSERT INTO [dbo].[AuditoriaCliente]
+    (
+        [clie_codigo],
+        [clie_razon_social],
+        [clie_telefono],
+        [clie_domicilio],
+        [clie_limite_credito],
+        [clie_vendedor],
+        [accion],
+        [fecha]
+    )
+    SELECT
+        [clie_codigo],
+        [clie_razon_social],
+        [clie_telefono],
+        [clie_domicilio],
+        [clie_limite_credito],
+        [clie_vendedor],
+        @accion,
+        GETDATE()
+    FROM
+        inserted
+    UNION ALL
+    SELECT
+        [clie_codigo],
+        [clie_razon_social],
+        [clie_telefono],
+        [clie_domicilio],
+        [clie_limite_credito],
+        [clie_vendedor],
+        @accion,
+        GETDATE()
+    FROM
+        deleted
+END
+
+
+SELECT * FROM dbo.Cliente;
+
+UPDATE dbo.Cliente SET clie_domicilio = 'LIBERTADOR' WHERE clie_domicilio = 'LIBERTADOR && CHACABUCO';
+
+SELECT * FROM dbo.Cliente;
+
+SELECT * FROM dbo.AuditoriaCliente;
