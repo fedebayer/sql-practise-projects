@@ -184,9 +184,6 @@ CREATE TABLE [dbo].[AuditoriaCliente](
 
 SELECT * FROM dbo.AuditoriaCliente;
 
-USE [FB_Practica_SQL_1_2]
-GO
-
 CREATE TRIGGER [dbo].[trg_Cliente_Auditoria]
 ON [dbo].[Cliente]
 AFTER INSERT, UPDATE, DELETE
@@ -247,3 +244,21 @@ UPDATE dbo.Cliente SET clie_domicilio = 'LIBERTADOR' WHERE clie_domicilio = 'LIB
 SELECT * FROM dbo.Cliente;
 
 SELECT * FROM dbo.AuditoriaCliente;
+
+/*PUNTO 6
+6. Realizar una vista de los siguientes datos del producto:
+    - Código
+    - Detalle
+    - Precio
+    - Descripción de Familia
+    - Descripción de Rubro
+    - Descripción de Envase*/
+
+CREATE VIEW ProductView AS
+SELECT p.prod_codigo AS Código, p.prod_detalle AS Detalle, p.prod_precio AS Precio, f.fami_detalle AS [Descripción de Familia], r.rubr_detalle AS [Descripción de Rubro], e.enva_detalle AS [Descripción de Envase]
+FROM dbo.Producto p
+JOIN dbo.Familia f ON p.prod_familia = f.fami_id
+JOIN dbo.Rubro r ON p.prod_rubro = r.rubr_id
+JOIN dbo.Envases e ON p.prod_envase = e.enva_codigo;
+
+SELECT * FROM dbo.ProductView;
